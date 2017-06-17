@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170616230443) do
+ActiveRecord::Schema.define(version: 20170617135201) do
 
   create_table "libraries", force: :cascade do |t|
     t.string  "name"
     t.string  "description"
     t.integer "user_id"
+    t.index ["user_id", "name"], name: "index_libraries_on_user_id_and_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
