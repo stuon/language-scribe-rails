@@ -1,0 +1,9 @@
+<h1 align="center">Listing all libraries</h1>
+<%= link_to "Create new library", new_library_path, class: "btn btn-xs btn-primary" %>
+<div align="center">
+	<%= will_paginate %>
+</div>
+<%= render 'library', obj: @libraries %>
+<div align="center">
+	<%= will_paginate %>
+</div>
