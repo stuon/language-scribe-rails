@@ -54,7 +54,7 @@ class LibrariesController < ApplicationController
     end
 
     def require_same_user
-        if current_user != @library.user
+        if current_user != @library.user and !current_user.admin?
             flash[:danger] = "You can only edit or delete your own libraries"
             redirect_to root_path
         end
