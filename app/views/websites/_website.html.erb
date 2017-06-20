@@ -1,0 +1,29 @@
+<% obj.each do |website| %>
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-2">
+		<div class="well well-lg">
+			<div class="content-title">
+				<%= link_to website.title, website_path(website) %>
+			</div>
+        	<div class="content-url">
+				<%= link_to website.url, website_path(website) %>
+			</div>
+			<div class="content-body">
+				<%= truncate(website.note, length: 100) %>
+				<div class="content-meta-details">
+					<%= time_ago_in_words(website.created_at) %> ago,
+					last updated: <%= time_ago_in_words(website.updated_at) %> ago</small>
+				</div>
+			</div>
+			<p>Library: <%= website.library.name %></p>
+			<% if user_signed_in? && (current_user == website.user || current_user.admin?) %>
+			<div class="content-actions">
+				<%= link_to "Edit this website", edit_website_path(website), class: "btn btn-xs btn-primary" %>
+				<%= link_to "Delete this website", website_path(website), method: :delete,
+					data: { confirm: "Are you sure you want to delete the website?"}, class: "btn btn-xs btn-danger" %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+<% end %>

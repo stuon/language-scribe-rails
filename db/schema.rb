@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170617140551) do
+ActiveRecord::Schema.define(version: 20170618121302) do
 
   create_table "libraries", force: :cascade do |t|
     t.string  "name"
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 20170617140551) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "websites", force: :cascade do |t|
+    t.string   "title"
+    t.string   "note"
+    t.string   "url"
+    t.integer  "user_id"
+    t.integer  "library_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "library_id", "url"], name: "index_websites_on_user_id_and_library_id_and_url", unique: true
   end
 
 end

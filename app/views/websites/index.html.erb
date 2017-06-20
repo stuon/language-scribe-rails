@@ -1,0 +1,9 @@
+<h1 align="center">Listing all websites</h1>
+<%= link_to "Create new website", new_website_path, class: "btn btn-sm btn-primary" %>
+<div align="center">
+	<%= will_paginate %>
+</div>
+<%= render 'website', obj: @websites %>
+<div align="center">
+	<%= will_paginate %>
+</div>

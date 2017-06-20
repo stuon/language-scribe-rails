@@ -3,7 +3,7 @@
 	<h4 class="center description"><strong>Description:</strong></h4>
 	<hr>	
 	<%= simple_format(@library.description) %>
-	<div class="library-actions">
+	<div class="content-actions">
 		<% if user_signed_in? && (@current_user == @library.user || current_user.admin?) %>
 		<%= link_to "Edit this library", edit_library_path(@library), class: "btn btn-xs btn-primary" %>
 		<%= link_to "Delete this library", library_path(@library), method: :delete,
