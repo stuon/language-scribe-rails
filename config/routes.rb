@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'pages/about', to: 'pages#about' 
  
   resources :libraries
+  resources :documents
   resources :websites
   devise_for :users
   

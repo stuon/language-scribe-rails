@@ -1,0 +1,9 @@
+<h1 align="center">Listing all documents</h1>
+<%= link_to "Create new document", new_document_path, class: "btn btn-sm btn-primary" %>
+<div align="center">
+	<%= will_paginate %>
+</div>
+<%= render 'document', obj: @documents %>
+<div align="center">
+	<%= will_paginate %>
+</div>

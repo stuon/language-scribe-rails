@@ -1,0 +1,15 @@
+<h2 align="center">Title: <%= @document.title %></h2>
+<p>Libaries: <%= @document.library.name %></p>
+<div class="well col-xs-8 col-xs-offset-2">
+	<h4 class="center description"><strong>Description:</strong></h4>
+	<hr>	
+	<%= simple_format(@document.content) %>
+	<div class="content-actions">
+		<% if user_signed_in? && (@current_user == @document.user || current_user.admin?) %>
+		<%= link_to "Edit this document", edit_document_path(@document), class: "btn btn-xs btn-primary" %>
+		<%= link_to "Delete this document", document_path(@document), method: :delete,
+			data: { confirm: "Are you sure you want to delete the document?"}, class: "btn btn-xs btn-danger" %>
+		<% end %>
+		<%= link_to "View all documents", documents_path, class: "btn btn-xs btn-success" %>
+	</div>
+</div>
