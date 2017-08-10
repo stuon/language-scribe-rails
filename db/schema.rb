@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170620110227) do
+ActiveRecord::Schema.define(version: 20170810220759) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "title"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20170620110227) do
     t.string  "description"
     t.integer "user_id"
     t.index ["user_id", "name"], name: "index_libraries_on_user_id_and_name", unique: true
+  end
+
+  create_table "sources", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "url"
+    t.string   "language_code"
+    t.string   "content_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["url"], name: "index_sources_on_url", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,6 +71,7 @@ ActiveRecord::Schema.define(version: 20170620110227) do
     t.integer  "library_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "source_id"
     t.index ["user_id", "library_id", "url"], name: "index_websites_on_user_id_and_library_id_and_url", unique: true
   end
 
