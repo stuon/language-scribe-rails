@@ -8,6 +8,7 @@
         	<div class="content-url">
 				<%= link_to website.url, website_path(website) %>
 			</div>
+			<p>Source: <%= website.source.title %></p>
 			<div class="content-body">
 				<%= truncate(website.note, length: 100) %>
 				<div class="content-meta-details">
