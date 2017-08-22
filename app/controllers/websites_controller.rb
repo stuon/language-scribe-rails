@@ -17,6 +17,19 @@ class WebsitesController < ApplicationController
     def create
         @website = Website.new(website_params)
         @website.user = current_user
+
+        baseurl = URI.parse(@website.url)
+        hosturl = baseurl.host
+        source = Source.find_by url:hosturl
+        if @search.blank?
+            source = Source.new
+            source.title = hosturl
+            source.url = hosturl
+            source.save
+        end
+
+        @website.source = source
+
         if @website.save
             flash[:success] = "Website was successfully created"
             redirect_to website_path(@website)
@@ -50,7 +63,7 @@ class WebsitesController < ApplicationController
     end
 
     def website_params
-        params.require(:website).permit(:url, :title, :note, :library_id)
+        params.require(:website).permit(:url, :title, :note, :library_id, :source_id)
     end
 
     def require_same_user
